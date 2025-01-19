@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+        <script src="{% static 'js/bootstrap.js' %}"></script>
+        <title>DBB {% block tittle %}{% endblock %}</title>
+    </head>
+    <body class="d-flex flex-column justify-content-between">
+        <header>
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <div class="container-fluid">
+                <a class="navbar-brand" href="/">DBB</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link {% block navItemComments %}{% endblock %}" href="/comments">Hacer un Comentario</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% block navItemProjects %}{% endblock %}" href="/projects">Otros Proyectos</a>
+                    </li>
+                    </ul>
+                </div>
+                </div>
+            </nav>
+        </header>
+        <main {% block mainArgs %}id="main" class="row justify-self-start"{% endblock %}>
+            {% block main %}
+            <section class="col-lg-6 flex-column" id="MSection1">
+                <h2 class="text-center m-5 tracking-in-expand">Django Bootstrap Blog</h2>
+                <article class="m-4 d-flex flex-column justify-content-center align-items-center fade-in">
+                    <p class="d-inline-flex gap-1">
+                        <button class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                          ¿De qué se trata?
+                        </button>
+                    </p>
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+                          DBB (Django Bootstrap Blog) es un proyecto full-stack simple creado con Django (Back-End e infraestructura) y con Bootstrap (Front-End).
+                        </div>
+                    </div>
+                </article>
+                <article class="m-4 d-flex flex-column justify-content-center align-items-center fade-in">
+                    <p class="d-inline-flex gap-1">
+                        <button class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
+                          ¿Qué es Django?
+                        </button>
+                    </p>
+                    <div class="collapse" id="collapseExample2">
+                        <div class="card card-body">
+                            Django es un framework web de alto nivel para Python que facilita la creación de aplicaciones web rápidas y seguras. Proporciona herramientas y estructuras listas para usar, como un sistema de autenticación, una interfaz de administración, y manejo de bases de datos, para que los desarrolladores puedan concentrarse en construir la lógica de sus aplicaciones sin preocuparse por los detalles más complejos.
+                        </div>
+                    </div>
+                </article>
+                <article class="m-4 d-flex flex-column justify-content-center align-items-center fade-in">
+                    <p class="d-inline-flex gap-1">
+                        <button class="btn btn-dark " type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample3">
+                          ¿Qué es Bootstrap?
+                        </button>
+                    </p>
+                    <div class="collapse" id="collapseExample3">
+                        <div class="card card-body">
+                            Bootstrap es un conjunto de herramientas de código abierto que facilita el diseño y desarrollo de sitios web modernos y responsivos. Incluye estilos predefinidos, componentes listos para usar (como botones, formularios, y menús de navegación) y un sistema de rejilla (Grid) flexible para organizar el contenido, todo con el objetivo de ayudar a los desarrolladores a crear sitios web atractivos y que se vean bien en cualquier dispositivo, de manera rápida y sencilla.
+                        </div>
+                    </div>
+                </article>
+                <article class="m-4 d-flex flex-column justify-content-center align-items-center fade-in">
+                    <p class="d-inline-flex gap-1">
+                        <button class="btn btn-dark " type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample4" aria-expanded="false" aria-controls="collapseExample3">
+                          ¿Qué es un proyecto FullStack?
+                        </button>
+                    </p>
+                    <div class="collapse" id="collapseExample4">
+                        <div class="card card-body">
+                            Cuando hablamos de un proyecto FullStack estamos hablando de un proyecto que posee todas las cualidades y caras que son necesarias para una página web (Es decir, FrontEnd y BackEnd). Se podría decir que el FrontEnd se refiere a la parte visual de la página, los estilos y la interacción con el usuario, mientras que el BackEnd se encarga del movimiento de datos que este registra o que ya contenía la página, para brindarsela al FrontEnd quien la acomodará en los lugares correctos para su cómoda visualización.
+                        </div>
+                    </div>
+                </article>
+            </section>
+            <section class="col-lg-6 d-flex flex-column align-items-center justify-content-start fade-in" id="MSection2">
+                <h2 class="m-2 fade-in text-center">- Comentarios -</h2>
+                <section class="container d-flex flex-wrap align-items-center justify-content-center">                
+                    {%  for comment in comments %}
+                    <div class="card m-4 tilt-in-top-1" style="min-width: 200px; max-width: 300px;">
+                        <div class="card-body">
+                          <h5 class="card-title">{{ comment.tittle }}</h5>
+                          <h6 class="card-subtitle mb-2 text-body-secondary">{{ comment.userName }}</h6>
+                          <p class="card-text">{{ comment.text }}</p>
+                        </div>
+                      </div>
+                    {% endfor %}
+                </section>
+            </section>
+            {% endblock %}
+        </main>
+        <footer>
+        </footer>
+    </body>
+</html>

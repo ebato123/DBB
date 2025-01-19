@@ -1,0 +1,22 @@
+@import url("./bootstrap.css");
+@import url("./animations.css");
+
+body {
+    min-height: 900px ;
+}
+
+body main#main section#MSection2{
+    background-color: whitesmoke;
+    border-radius: 15px;
+    margin: 15px 0px 15px 0px;
+}
+body main#main section#MSection2 h2{
+    margin-top: 50px !important;
+}
+body main#main-comments{
+    height: 100% ;
+}
+body footer{
+    height: 200px ;
+    background-color: whitesmoke ;
+}
