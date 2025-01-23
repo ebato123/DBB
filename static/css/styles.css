@@ -16,6 +16,13 @@ body main#main section#MSection2 h2{
 body main#main-comments{
     height: 100% ;
 }
+
+body main#main-login section#MLSection1{
+    background-color: whitesmoke ;
+    border-radius: 15px;
+    
+}
+
 body footer{
     height: 200px ;
     background-color: whitesmoke ;

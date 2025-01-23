@@ -16,7 +16,7 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="{% if request.path == '/login/' %}d-none{% else %}collapse navbar-collapse{% endif %}" id="navbarNav">
                     <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link {% block navItemComments %}{% endblock %}" href="/comments">Hacer un Comentario</a>
@@ -29,7 +29,17 @@
                 </div>
             </nav>
         </header>
-        <main {% block mainArgs %}id="main" class="row justify-self-start"{% endblock %}>
+        {# Messagges #}
+        {% if messages %}
+        <div class="container mt-4">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        <main {% block mainArgs %}id="main" class="row justify-self-start -xl-4"{% endblock %}>
             {% block main %}
             <section class="col-lg-6 flex-column" id="MSection1">
                 <h2 class="text-center m-5 tracking-in-expand">Django Bootstrap Blog</h2>
