@@ -1,0 +1,65 @@
+{% extends 'main.html' %}
+
+{% block tittle %} - POSTEAR{% endblock %}
+{% block navItemComments %}active{% endblock %}
+{# Main Arguments #}
+{% block mainArgs %}id="main-post_comments" class="container d-flex flex-column flex-lg-row justify-content-center align-items-center"{% endblock %}
+{% block main %}
+  <section class="d-flex justify-content-center flex-column overflow-auto border mt-4 p-5 w-75" id="MPCSection2">
+    {% if not comments %}
+        <h4 class = "fade-in text-center pb-5"><br><br>¡Qué triste!<br><br>Nadie posteó nada todavía...<br><br><i class="fs-1 fa-regular fa-face-sad-tear"></i></h4>
+    {% endif %}        
+    {%  for comment in comments %}
+        <div class="card m-2 tilt-in-top-1 {{comment.comment_align_class}}" style="min-width: 150px; max-width: 200px;">
+            <div class="card-body">
+                <h6 class="card-subtitle text-center" style="color: lightgray; font-size: 0.5rem">{{ comment.user_name  }} {{comment.created_at|date:"d/m/Y - H:i" }}</h6>
+                {% if comment.tittle %}<h5 class="card-title m-1" style="font-size: 1rem">{{ comment.tittle }}</h5>{% endif %}
+                <h6 class="card-subtitle mb-2 text-body-secondary" style="font-size: 0.8rem">{{ comment.userName }}</h6>
+                <p class="card-text">{{ comment.text }}</p>
+            </div>
+        </div>
+    {% endfor %}
+  </section>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const container = document.getElementById("MPCSection2");
+        container.scrollTop = container.scrollHeight;
+    });
+  </script>
+  <section class="container p-3 d-flex justify-content-evenly flex-column p-5" id="MPCSection1">
+    <h2 class="fade-in text-center">¿En qué pensás?</h2>
+    <form class="p-xl-5 m-4 m-xl-0 tilt-in-top-1" method="POST" >
+      {% csrf_token %}
+        <div class="mb-3">
+          <article class="d-flex flex-column">
+            <label for="exampleFormControlInput1" class="form-label">
+              Público
+              <input type="checkbox" id="public-checkbox" name="public-checkbox" checked>
+            </label>
+            <label for="exampleFormControlInput1" class="form-label">
+              Título
+              <input type="checkbox" id="tittle-checkbox" >
+            </label>
+          </article>
+          <input type="text" class="form-control d-none" id="exampleFormControlInput1" placeholder="Este será el título del comentario" name="tittle" value="{{ tittle|default:'' }}">
+          <script>
+            const checkbox = document.getElementById('tittle-checkbox');
+            const tittle = document.getElementById('exampleFormControlInput1');
+            checkbox.addEventListener('change', () => {
+                if (checkbox.checked) {
+                  tittle.classList.remove('d-none');
+                } else {
+                  tittle.classList.add('d-none');
+                }
+            });
+          </script>
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label">Comentario</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Este será el comentario" name="text">{{ text|default:'' }}</textarea>
+        </div>
+        <button class="btn btn-outline-dark" type="submit">POSTEAR</button>
+    </form>
+    <h6 class="fade-in text-center">La información ingresada no será compartida con ninguna entidad de terceros.</h6>
+  </section>
+{% endblock %}

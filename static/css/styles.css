@@ -2,28 +2,84 @@
 @import url("./animations.css");
 
 body {
-    min-height: 900px ;
+    margin: 0% !important;
+}
+
+body header{
+    width: 100vw;
+    margin-bottom: 60px !important;
+}
+
+body header nav{
+    border-style: dashed;
+
+    border-color: white;
+    border-bottom-color: black !important;
+}
+
+body main{
+    width: 100%;
+}
+
+/***************** MAIN *****************/
+body main#main section#MSection1{
+    background-color: whitesmoke;
+    border-radius: 15px;
+    margin: 15px 0px 15px 0px;
+    padding-right: 0%;
+    border-style: dashed;
+    border-color: black;
 }
 
 body main#main section#MSection2{
     background-color: whitesmoke;
     border-radius: 15px;
     margin: 15px 0px 15px 0px;
+    padding-right: 0%;
+    border-style: dashed;
+    border-color: black;
+    max-height: 600px;
 }
+
+body main#main section#MSection2 span#span-public{
+    font-weight: bold;
+    color: lightgreen;
+}
+
+body main#main section#MSection2 span#span-private{
+    font-weight: bold;
+    color: lightskyblue;
+}
+
 body main#main section#MSection2 h2{
     margin-top: 50px !important;
 }
-body main#main-comments{
+
+/***************** MAIN - POST COMMENTS *****************/
+body main#main-post_comments{
     height: 100% ;
 }
 
+body main#main-post_comments section#MPCSection2 {
+    max-height: 600px;
+    overflow-y: auto;
+    border-radius: 15px;
+    background-color: whitesmoke;
+    border-style: dashed !important;
+    border-color: black !important;
+}
+
+/* body main#main-post_comments section#MPCSection1 {
+
+} */
+
+/***************** MAIN - LOGIN *****************/
 body main#main-login section#MLSection1{
     background-color: whitesmoke ;
     border-radius: 15px;
-    
 }
 
-body footer{
+/* body footer{
     height: 200px ;
     background-color: whitesmoke ;
-}
+} */
