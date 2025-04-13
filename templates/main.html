@@ -20,12 +20,14 @@
                         <ul class="navbar-nav">
                             {% if request.user.is_authenticated %}
                             <li class="nav-item">
-                                <a class="nav-link {% block navItemProjects %}{% endblock %}" href="/post_comment" style="font-weight: bold;"> DBB</a>
+                                <a class="nav-link {% block navItemProjects %}{% endblock %}" href="/post_comment">
+                                    <i class="fa-regular fa-comment"></i>  Posts
+                                </a>
                             </li>
                             {% endif %}
                             <li class="nav-item">
                                 <a class="nav-link {% block navItemLogin %}{% endblock %}" href="/login" onclick="return confirmLogout()">
-                                <i class="fa-regular fa-rectangle-xmark"></i>  Cerrar Sesión
+                                    <i class="fa-regular fa-rectangle-xmark"></i>  Cerrar Sesión
                                 </a>
                             </li>
                             <script>

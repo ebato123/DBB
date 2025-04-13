@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from EXE.methods import check_fields_post_comment, check_fields_register
 
+
 from .models import Comment
 
 def main (request):
