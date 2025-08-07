@@ -9,7 +9,8 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import dj_database_url
+import os
 from pathlib import Path
 from django.contrib.messages import constants as messages
 
@@ -37,7 +38,7 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
 
-ALLOWED_HOSTS = ['192.168.100.73','192.168.62.33', '127.0.0.1']
+ALLOWED_HOSTS = ['192.168.100.73','192.168.62.33', '127.0.0.1','.onrender.com']
 
 # Application definition
 
@@ -87,22 +88,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'prueba.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'test',
-        'USER': 'rutina',
-        'PASSWORD': 'pitonisa21',
-        'HOST': 'localhost',
-        'PORT': '3306',
-    }
-}
-
-
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
@@ -145,3 +130,16 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Database
+# https://docs.djangoproject.com/en/5.1/ref/settings/#databasesimport dj_database_url
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',  # o PostgreSQL más adelante
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+DATABASES['default'] = dj_database_url.config(default=os.getenv('DATABASE_URL'))
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
