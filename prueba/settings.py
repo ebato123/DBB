@@ -42,10 +42,8 @@ ALLOWED_HOSTS = ['192.168.100.73','192.168.62.33', '127.0.0.1','.onrender.com']
 
 # Application definition
 
-STATICFILES_DIRS = [
-    BASE_DIR / 'static',
-    [os.path.join(BASE_DIR, "static")],
-]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
