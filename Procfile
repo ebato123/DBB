@@ -1,1 +1,1 @@
-web: gunicorn DBB.wsgi
+web: gunicorn EXE.wsgi
